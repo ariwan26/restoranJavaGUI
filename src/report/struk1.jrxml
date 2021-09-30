@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="struk1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5f013d13-592f-46e1-a2c1-4cbcbd26ba80">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT transaksi.`id` AS kd_transaksi,`user`.`id` AS id_petugas,`user`.`nama` AS nama_petugas,
+transaksi.`tgl`, transaksi.`jam`, barang.`nama_barang`,
+det_transaksi.`jumlah` AS qty, det_transaksi.`subtotal` ,transaksi.`total` AS total_belanja
+FROM transaksi
+INNER JOIN det_transaksi ON transaksi.`id_detail` = det_transaksi.`id`
+INNER JOIN `user` ON transaksi.`id_user` = `user`.`id`
+INNER JOIN barang ON det_transaksi.`id_barang` = barang.`id`
+where transaksi.`id` = 1]]>
+	</queryString>
+	<field name="kd_transaksi" class="java.lang.Integer"/>
+	<field name="id_petugas" class="java.lang.Integer"/>
+	<field name="nama_petugas" class="java.lang.String"/>
+	<field name="tgl" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jam" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_barang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="qty" class="java.lang.Integer"/>
+	<field name="subtotal" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_belanja" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="15" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="73" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-17" y="-170" width="597" height="117" backcolor="#0984E3" uuid="2ff5a6a2-3c1e-4b47-8fce-6eac6a72734a"/>
+				<staticText>
+					<reportElement x="145" y="23" width="295" height="52" forecolor="#FFFFFF" uuid="6d2f6b60-c659-40f5-8761-5c182bc83051"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Century Gothic" size="30" isBold="true"/>
+					</textElement>
+					<text><![CDATA[STRUK PEMBAYARAN]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
